@@ -1,2 +1,3 @@
-# TT-picking
-Travel-time picking
+# Travel-time picking
+## First-break picking
+## Event picking
