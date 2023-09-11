@@ -1,0 +1,38 @@
+function [ fb ] = FistBreak( s )
+%FISTBREAK Summary of this function goes here
+%   Detailed explanation goes here
+%% PRIMARY PROCESS
+s = s(:)';
+n0 = length(s);
+s = s(1:2*fix(n0/2));
+%% ARRIVAL TIME VICINITY EXTRACTION
+l = fix(N/20);
+w1 = gausswin(l,5);
+c = conv(w1,abs(s));
+d = c(l:end)./(c(1:N) + eps);
+d(1:l) = 0;
+[~, m1] = max(d);
+x = s(m1-l+1:m1+l);
+n1 = length(x);
+w2 = tukeywin(n1,.4);
+x = x .* w2;
+%% TF PRODUCTION
+X = repmat(x,1,n1);
+W = winmtx_1( n1,8 );
+STFT = fft(W.*X);
+TFR = abs(STFT(n1/2+1:end,:));
+%% CHARACTERISTIC FUNCTION DETERMINATION
+CFy = sum(TFR,2);
+freq = diff(CFy  > 4/5 * max(CFy ));
+CFx = sum(TFR(freq,:));
+Smooth_CFx = EPS(CFx,20); % selected parameter
+Diff_smooth_CFx =  diff(Smooth_CFx);
+[~,m2] = max(Diff_smooth_CFx);
+m = CFx(m2+1)-CFx(m2);
+y_line = m*(1:n1) - m*m2 + CFx(m2);
+zc = round( (m*m2-CFx(m2)) / m ); % y=0 , x:
+fb = round(m1-n1/2+zc+1);
+
+
+end
+
