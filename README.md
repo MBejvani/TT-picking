@@ -5,5 +5,5 @@
 ![1](img/1.png)
 ![2](img/2.png)
 ![sec](img/sec.png)
-## REFERENCES
+## References
 * •	Bejvani M., A. Gholami, (2015) “Adaptive STFT and its application for automatic traveltime picking”, 2nd Seminar of Petroleum Geophysical Exploration, Tehran, Iran.
