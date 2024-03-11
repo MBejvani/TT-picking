@@ -1,7 +1,6 @@
 # Travel-time picking
 ## First-break picking
-![3](img/FB_Picked.jpg)
-![0](img/0.png)
+![fb](img/FB_Picked.jpg)
 ## Event picking
 ![0](img/0.png)
 ![1](img/1.png)
